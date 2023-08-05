@@ -18,8 +18,24 @@ The project uses two main datasets:
 2. Property data (27 million): This file includes details about the properties, such as mortgage records, tax assessments, physical features of the property (bed count, living area, age of the building), and location details.
 
 
+
 ## Exploratory Data Analysis
-EDA involves understanding the data using various visualization techniques. Refer to the EDA Jupyter notebook file attached for a detailed analysis.
+EDA involves understanding the data using various visualization techniques. 
+
+- Serious missing value probelm: 35% of the attributes are missing more than 90% of values.
+
+<img src="img/eda_miss.png" alt="image" height="300" width="300"/>
+
+- Location analysis
+
+<img src="img/loca.png" alt="image" height="300" width="300"/>
+
+- Heatmap to explore correlation
+
+<img src="img/heatmap.png" alt="image" height="300" width="300"/>
+
+Refer to the EDA Jupyter notebook file attached for a detailed analysis.
+
 
 ## Impute Missing Values
 A major challenge in dealing with the data was the high percentage of missing attributes (35% with more than 90% missing values). We use Knn Imputation (Euclidean distance) to handle the missing values:
