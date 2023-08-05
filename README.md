@@ -1,7 +1,9 @@
 # Capstone - Zillow House Price Prediction
 
 ## Overview
-Zillow is an online real estate database company founded in 2006 that provides an estimate system called Zestimate. The Zestimate system utilizes 7.5 million statistical and machine learning models to analyze various data points on each property, determining the price value for any given house. Kaggle participants will develop an algorithm that makes predictions about the future sale prices of homes. More information about this contest: https://www.kaggle.com/competitions/zillow-prize-1/overview
+Zillow is an online real estate database company founded in 2006 that provides an estimate system called Zestimate. The Zestimate system utilizes 7.5 million statistical and machine learning models to analyze various data points on each property, determining the price value for any given house. Kaggle participants will develop an algorithm that makes predictions about the future sale prices of homes. 
+
+More information about this contest: https://www.kaggle.com/competitions/zillow-prize-1/overview
 
 ## Problem Statement
 In this data science project, the task is to build a machine learning model based on the residuals of the Zestimate system. The target variable given in the dataset is the log-transformed error between the predicted price and the actual price of houses.
@@ -20,10 +22,10 @@ The project uses two main datasets:
 EDA involves understanding the data using various visualization techniques. Refer to the EDA Jupyter notebook file attached for a detailed analysis.
 
 ## Impute Missing Values
-A major challenge in dealing with the data was the high percentage of missing attributes (35% with more than 90% missing values). Two strategies were used to handle the missing values:
-
-1. Approach 1: Imputation after joining the two datasets (on 90k records) using K-Nearest Neighbors (KNN).
-2. Approach 2: Imputation before the join operation (on 27 million records) using K-Nearest Neighbors (KNN) to take advantage of a larger dataset for better neighbor imputation.
+A major challenge in dealing with the data was the high percentage of missing attributes (35% with more than 90% missing values). We use Knn Imputation (Euclidean distance) to handle the missing values:
+Knn Imputation (Euclidean distance)
+1. Imputation after join operation -90k 
+2. Using KNN classifier and regressor to find better neighbors to impute
 
 ## Feature Engineering
 Feature engineering involved creating new variables using variable interaction and feature selection using different approaches:
@@ -36,25 +38,45 @@ New features using variable interaction:
 
 Feature Selection & Dimensionality Reduction:
 - Recursive Feature Elimination (RFE)
+
+<!-- ![image](img/rfe_selection.png) -->
+<img src="img/rfe_selection.png" alt="image" height="200" width="300"/>
+
+
 - XgBoost feature importance (Information Gain & Gini Index)
+
+<!-- ![image](img/xgboost_selection.png) -->
+<img src="img/xgboost_selection.png" alt="image" height="300" width="300"/>
+
+
 - TreeRegressor feature importance (Information Gain & Gini Index)
+<!-- 
+![image](img/tree_selection.png) -->
+<img src="img/tree_selection.png" alt="image" height="200" width="400"/>
+
 - Principal Component Analysis (PCA)
 
+<!-- ![image](img/pca_selection.png) -->
+<img src="img/pca_selection.png" alt="image" height="200" width="300"/>
+
+Result of Dimensionality Reduction:
+<!-- 
+![image](img/res_fe.png) -->
+<img src="img/res_fe.png" alt="image" height="80"  width="400"/>
+
 ## Model Building & Fine Tuning
-All the ML algorithms used in this project were tuned with GridSearchCV using scikit-learn algorithms. The entire data was split into a 90% training set and a 10% test set, and models were built on the training data using cross-validation techniques.
+We will use Linear regression, Ridge regression, Gradient boosting decision tree tuned with gridsearchcv to conduct classification task. They are conducted based on four groups of attributes selected by feature engineering: rfe_selection, xgboost_selelction, tree_selection, pca_selection respectively.
+The whole data is divided into train 90% and test 10%, models are built on train data using cross-validation techniques.
+
 
 ## Results
-The Kaggle benchmark score obtained was 0.064.
+
 
 The models' performance on different imputation approaches and PCA are as follows:
 
-| Model             | Imputation on Transaction Data | Imputation on Properties Data | PCA            |
-|-------------------|-------------------------------|-------------------------------|----------------|
-| Linear Regression | 0.0672                        | 0.0672                        | 0.0673         |
-| Ridge Regression  | 0.0672                        | 0.0672                        | 0.0672         |
-| Random Forest     | 0.673                         | 0.673                         | 0.673          |
-| Gradient Boosting | 0.0671                        | 0.0671                        | 0.0671         |
-| XgBoost           | 0.0670                        | 0.0670                        | 0.0672         |
+<img src="img/res.png" alt="image" height="200"  width="400"/>
+
+For each selection, Ridge regression has the lowest MAE.
 
 ## Inferences and Future Improvements
 - The main challenge was building the model based on the residuals of a powerful machine learning model (Zestimate system).
