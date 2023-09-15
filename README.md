@@ -88,7 +88,7 @@ The whole data is divided into train 90% and test 10%, models are built on train
 ## Results
 
 
-The models' performance on different imputation approaches and PCA are as follows:
+The models' performance on different feature selection approaches and PCA are as follows:
 
 <img src="img/res.png" alt="image" height="200"  width="400"/>
 
@@ -98,5 +98,5 @@ For each selection, Ridge regression has the lowest MAE.
 - The main challenge was building the model based on the residuals of a powerful machine learning model (Zestimate system).
 - The amount of missing information in each attribute also contributed to the model's limitations.
 - Hardware limitations prevented building an imputation model using all 27 million records.
-- Exploring different imputation techniques and leveraging xgboost's inbuilt ability to handle missing values could be potential future improvements.
+- Exploring different feature selection techniques and leveraging xgboost's inbuilt ability to handle missing values could be potential future improvements.
 - Further investigation is needed to improve the linear regression model's R squared value, which suggests it couldn't effectively explain the underlying data.
