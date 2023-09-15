@@ -81,7 +81,7 @@ Result of Dimensionality Reduction:
 <img src="img/res_fe.png" alt="image" height="80"  width="400"/>
 
 ## Model Building & Fine Tuning
-We will use Linear regression, Ridge regression, Gradient boosting decision tree tuned with gridsearchcv to conduct classification task. They are conducted based on four groups of attributes selected by feature engineering: rfe_selection, xgboost_selelction, tree_selection, pca_selection respectively.
+We will use Linear regression, Ridge regression, Gradient boosting decision tree tuned with gridsearchcv to conduct regression task. They are conducted based on four groups of attributes selected by feature engineering: rfe_selection, xgboost_selelction, tree_selection, pca_selection respectively.
 The whole data is divided into train 90% and test 10%, models are built on train data using cross-validation techniques.
 
 
